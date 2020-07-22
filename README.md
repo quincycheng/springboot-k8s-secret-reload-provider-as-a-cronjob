@@ -1,0 +1,1 @@
+# springboot-k8s-secret-reload-provider-as-a-cronjob
