@@ -1,0 +1,63 @@
+
+---
+apiVersion: batch/v1beta1
+kind: CronJob
+metadata:
+  name: cityapp-cronjob
+  namespace: cityapp
+spec:
+  schedule: '* * * * *'
+  concurrencyPolicy: 'Forbid'
+  jobTemplate:
+    spec:
+      template:
+        spec:
+          serviceAccountName: cityapp-cronjob
+          restartPolicy: Never
+          containers:
+          - image: 'cyberark/secrets-provider-for-k8s'
+            imagePullPolicy: IfNotPresent
+            name: authenticator
+         
+          
+            env:
+              - name: CONTAINER_MODE
+                value: init
+              - name: MY_POD_NAME
+                valueFrom:
+                  fieldRef:
+                    apiVersion: v1
+                    fieldPath: metadata.name
+              - name: MY_POD_NAMESPACE
+                valueFrom:
+                  fieldRef:
+                    apiVersion: v1
+                    fieldPath: metadata.namespace
+              - name: MY_POD_IP
+                valueFrom:
+                  fieldRef:
+                    fieldPath: status.podIP
+
+              - name: CONJUR_APPLIANCE_URL
+                value: "https://dap-follower1.dap.svc.cluster.local/api"
+
+              - name: CONJUR_AUTHN_URL
+                value: "https://dap-follower1.dap.svc.cluster.local/api/authn-k8s/ocp"
+
+              - name: CONJUR_ACCOUNT
+                value: "CAU"
+
+              - name: CONJUR_AUTHN_LOGIN
+                value: "host/conjur/authn-k8s/ocp/apps/cityapp/*/*"
+
+              - name: CONJUR_SSL_CERTIFICATE
+                valueFrom:
+                  configMapKeyRef:
+                    name: follower-certificate
+                    key: ssl-certificate
+
+              - name: K8S_SECRETS
+                value: cityapp-secret
+  
+              - name: SECRETS_DESTINATION
+                value: k8s_secrets

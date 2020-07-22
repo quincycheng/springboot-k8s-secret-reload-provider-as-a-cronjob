@@ -1,0 +1,19 @@
+# Startup configuration of Spring-cloud-kubernetes
+spring:
+  application:
+    name: cityapp-secret
+  cloud:
+    kubernetes:
+      reload:
+        enabled: true
+        monitoring-secrets: true
+        monitoring-config-maps: true
+        strategry: refresh
+        mode: event
+      secrets:
+        name: cityapp-secret
+        namespace: cityapp
+        enableApi: true
+        enabled: true
+
+

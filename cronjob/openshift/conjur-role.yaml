@@ -1,0 +1,27 @@
+# conjur-role.yml
+---
+apiVersion: v1
+kind: ServiceAccount
+metadata:
+  name: cityapp-cronjob
+---
+apiVersion: v1
+kind: RoleBinding
+metadata:
+  namespace: cityapp
+  name: secrets-access-binding
+subjects:
+  - kind: ServiceAccount
+    namespace: cityapp
+    name: cityapp-cronjob
+roleRef:
+  kind: ClusterRole
+  name: secrets-access
+---
+apiVersion: v1
+kind: ClusterRole
+metadata:
+  name: secrets-access
+rules:
+  - resources: ["secrets"]
+    verbs: [ "get", "update", "patch" ]
