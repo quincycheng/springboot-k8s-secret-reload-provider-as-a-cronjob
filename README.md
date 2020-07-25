@@ -1,4 +1,4 @@
-# springboot-k8s-secret-reload-mysql
+# springboot-k8s-secret-reload-provider-as-a-cronjob
 Springboot Demo with reloading k8s secrets of Oracle database without restarting app container by using secret provider as cronjob
 
 ## Demo
