@@ -12,4 +12,4 @@ https://www.youtube.com/watch?v=0i34xreeJso&t=1146s
 - Spring Cloud Kubernetes: 
 https://spring.io/projects/spring-cloud-kubernetes
 
-- CyberArk Secrets Provider for Kubernetes: https://docs.cyberark.com/Product-Doc/OnlineHelp/AAM-DAP/Latest/en/Content/Integrations/Kubernetes_deployApplicationsConjur-k8s-Secrets.htm?tocpath=Integrations%7COpenShift%252C%20Kubernetes%7CDeploy%20Applications%7C_____3
+- CyberArk Secrets Provider for Kubernetes: https://docs.cyberark.com/Product-Doc/OnlineHelp/AAM-DAP/Latest/en/Content/Integrations/k8s-ocp/cjr-secrets-provider-lp.htm
